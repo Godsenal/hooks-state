@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useConnect } from '../hooks-state/hooks';
 
 const actions = {
@@ -10,15 +10,16 @@ const actions = {
   },
 };
 
-const mapState = state => ({
-  count: state.other,
-});
 const mapDispatch = dispatch => ({
   increase: () => dispatch(actions.increase()),
   decrease: () => dispatch(actions.decrease()),
   asyncIncrease: () => dispatch(actions.asyncIncrease()),
 });
-const Counter = () => {
+const Counter = ({ defaultCount }) => {
+  const mapState = useCallback(
+    state => ({ count: state.count + defaultCount }),
+    [defaultCount],
+  );
   const { count, increase, decrease, asyncIncrease } = useConnect(
     mapState,
     mapDispatch,

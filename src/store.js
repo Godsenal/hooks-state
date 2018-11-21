@@ -1,3 +1,5 @@
+import { createStore } from './hooks-state';
+
 const initialState = {
   count: 0,
   other: 0,
@@ -36,4 +38,4 @@ const logger = state => next => action => {
 
 const middlewares = [thunk, logger];
 
-export default { initialState, reducer, middlewares };
+export default createStore(initialState, reducer, middlewares);
