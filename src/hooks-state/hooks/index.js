@@ -23,6 +23,8 @@ export const useHookState = (mapState, getStore = useStore) => {
 
   useEffect(
     () => {
+      // checkAndUpdate를 밖에 빼주고, prevMappedState 대신 mappedState를 쓰면 될 것 같지만,
+      // 이 checkAndUpdate 자체도 클로져의 대상이 되므로 맨 처음 checkAndUpdate 함수만 가져옴.
       const checkAndUpdate = () => {
         const newMappedState = mapState(store.getState());
         if (!shallowEqual(prevMappedState.current, newMappedState)) {
