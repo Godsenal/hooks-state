@@ -16,7 +16,6 @@ const mapDispatch = dispatch => ({
   asyncIncrease: () => dispatch(actions.asyncIncrease()),
 });
 const Counter = ({ defaultCount }) => {
-  console.log('ff');
   const mapState = useCallback(
     state => ({ count: state.count + defaultCount }),
     [defaultCount],
